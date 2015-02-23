@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="local.transactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+    </bean>
+
+    <bean id="PROPAGATION_REQUIRES_NEW" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="local.transactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+    </bean>
+
+    <bean id="camelBeanPostProcessor" class="org.apache.camel.spring.CamelBeanPostProcessor">
+        <property name="camelId" value="camelContext"/>
+    </bean>
+
+    <bean id="camelContext" class="org.apache.camel.spring.CamelContextFactoryBean">
+        <property name="id" value="servicesContext"/>
+        <property name="useMDCLogging" value="true"/>
+        <property name="contextScan">
+            <bean class="org.apache.camel.model.ContextScanDefinition"/>
+        </property>
+        <property name="beanPostProcessor" ref="camelBeanPostProcessor"/>
+    </bean>
+
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="transacted" value="true"/>
+        <property name="cacheLevelName" value="CACHE_NONE"/>
+        <property name="transactionManager" ref="local.transactionManager"/>
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="concurrentConsumers" value="1"/>
+        <property name="maxConcurrentConsumers" value="10"/>
+        <property name="errorHandlerLoggingLevel" value="ERROR"/>
+        <property name="errorHandlerLogStackTrace" value="true"/>
+    </bean>
+
+</beans>

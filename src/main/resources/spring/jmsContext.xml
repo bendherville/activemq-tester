@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+      Disabling consumer redelivery so redelivery can be handled by the broker.
+
+      Due to way Spring handles JMS connections and listeners it is not possible to use back off redelivery
+      config at the connection level. Redelivery will configured in the broker instead.
+     -->
+    <bean id="consumerRedeliveryPolicyMap" class="org.apache.activemq.broker.region.policy.RedeliveryPolicyMap">
+        <property name="defaultEntry">
+            <bean class="org.apache.activemq.RedeliveryPolicy" p:maximumRedeliveries="0"/>
+        </property>
+    </bean>
+
+    <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" init-method="start"
+          destroy-method="stop">
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+        <property name="maxConnections" value="8"/>
+    </bean>
+
+    <bean id="local.transactionManager"
+          class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+    </bean>
+
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"
+          p:brokerURL="${jms.broker.url}"
+          p:redeliveryPolicyMap-ref="consumerRedeliveryPolicyMap"
+          p:alwaysSyncSend="true"/>
+
+</beans>
