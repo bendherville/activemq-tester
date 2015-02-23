@@ -1,6 +1,6 @@
-package com.encompasscorporation.mvc;
+package com.activemqtester.mvc;
 
-import com.encompasscorporation.camel.CamelRoute;
+import com.activemqtester.camel.CamelRoute;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.springframework.stereotype.Controller;

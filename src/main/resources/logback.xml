@@ -5,7 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.encompasscorporation" level="DEBUG"/>
+    <logger name="com.activemqtester" level="DEBUG"/>
 
     <logger name="org.apache.camel" level="WARN"/>
     <logger name="org.apache.camel.spring.SpringCamelContext" level="WARN"/>

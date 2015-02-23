@@ -10,7 +10,7 @@
     <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 
-    <context:component-scan base-package="com.encompasscorporation"/>
+    <context:component-scan base-package="com.activemqtester"/>
 
     <bean id="encompassProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="valueSeparator" value=":"/>

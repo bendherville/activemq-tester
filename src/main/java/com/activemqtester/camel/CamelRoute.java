@@ -1,4 +1,4 @@
-package com.encompasscorporation.camel;
+package com.activemqtester.camel;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.spring.SpringRouteBuilder;
