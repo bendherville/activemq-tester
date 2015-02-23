@@ -29,11 +29,11 @@
 
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
         <property name="transacted" value="true"/>
-        <property name="cacheLevelName" value="CACHE_NONE"/>
-        <property name="transactionManager" ref="local.transactionManager"/>
+        <property name="cacheLevelName" value="CACHE_CONSUMER"/>
+        <!--<property name="transactionManager" ref="local.transactionManager"/>-->
         <property name="connectionFactory" ref="pooledConnectionFactory"/>
         <property name="concurrentConsumers" value="1"/>
-        <property name="maxConcurrentConsumers" value="10"/>
+        <property name="maxConcurrentConsumers" value="1"/>
         <property name="errorHandlerLoggingLevel" value="ERROR"/>
         <property name="errorHandlerLogStackTrace" value="true"/>
     </bean>

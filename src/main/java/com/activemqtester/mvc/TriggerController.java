@@ -23,8 +23,8 @@ public class TriggerController {
     @RequestMapping(value = "/camel", method = {RequestMethod.GET, RequestMethod.HEAD})
     @ResponseBody
     public String triggerCamelRoute(
-            @RequestParam(value = "sleep") Integer sleepInMS,
-            @RequestParam(value = "failOnFirstAttempt", required = false) boolean failOnFirstAttempt) {
+            @RequestParam(value = "sleep", defaultValue = "0") int sleepInMS,
+            @RequestParam(value = "failOnFirstAttempt", defaultValue = "false") boolean failOnFirstAttempt) {
 
         Map<String, Object> headers = new HashMap<>();
         headers.put("failOnFirstAttempt", failOnFirstAttempt);
