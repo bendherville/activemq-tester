@@ -20,7 +20,7 @@
           destroy-method="stop">
         <property name="connectionFactory" ref="jmsConnectionFactory"/>
         <property name="maxConnections" value="1"/>
-        <property name="maximumActiveSessionPerConnection" value="20"/>
+        <property name="maximumActiveSessionPerConnection" value="3"/>
     </bean>
 
     <bean id="local.transactionManager"

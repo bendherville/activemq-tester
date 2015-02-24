@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for host in app11-stagingas app21-stagingas; do
+   scp target/activemq-tester.war ${host}:~/
+done;
+

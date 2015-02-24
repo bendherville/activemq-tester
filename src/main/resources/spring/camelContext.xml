@@ -4,11 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
-        <property name="transactionManager" ref="local.transactionManager"/>
-        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
-    </bean>
-
     <bean id="PROPAGATION_REQUIRES_NEW" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
         <property name="transactionManager" ref="local.transactionManager"/>
         <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
@@ -33,7 +28,7 @@
         <!--<property name="transactionManager" ref="local.transactionManager"/>-->
         <property name="connectionFactory" ref="pooledConnectionFactory"/>
         <property name="concurrentConsumers" value="1"/>
-        <property name="maxConcurrentConsumers" value="1"/>
+        <property name="maxConcurrentConsumers" value="2"/>
         <property name="errorHandlerLoggingLevel" value="ERROR"/>
         <property name="errorHandlerLogStackTrace" value="true"/>
     </bean>

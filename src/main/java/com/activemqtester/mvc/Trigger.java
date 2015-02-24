@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/trigger")
-public class TriggerController {
+public class Trigger {
 
     @Produce(uri = CamelRoute.STEP_1_URI)
     private ProducerTemplate producer;
